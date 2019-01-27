@@ -23,14 +23,14 @@ class App extends Component {
         this.setState({ data: response.data })
       })
       .catch((error) => {
-        this.setState({ data: error.data })
+        this.setState({ error: error.data })
       })
   }
 
   render() {
     const info = this.state.data.map(function (item) {
-      return <div class="grid-item">
-        <img src={`https://d2snwnmzyr8jue.cloudfront.net/${item.artKey}_270.jpeg`} ></img>
+      return <div key={item.titleId}>
+        <img alt='Loading' src={`https://d2snwnmzyr8jue.cloudfront.net/${item.artKey}_270.jpeg`} ></img>
       <li> Title: {item.title} Artist: {item.artistName} </li>
       </div>
     });
