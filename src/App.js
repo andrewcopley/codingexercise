@@ -20,23 +20,10 @@ class App extends Component {
       }
     })
       .then((response) => {
-        console.log('RESPONSE: ', response)
         this.setState({ data: response.data })
-        this.setState({ username: response.data[0].title })
-        console.log('YYYYYYYYY: ', this.state.data)
-        this.state.data.map((function (item) {
-          axios.get(`https://d2snwnmzyr8jue.cloudfront.net/${item.artKey}_270.jpeg`)
-            .then((response) => {
-              console.log('PICTURE RESPONSE: ', response)
-              this.state.pictures.push(`https://d2snwnmzyr8jue.cloudfront.net/${item.artKey}_270.jpeg`)
-            })
-            .catch((error) => {
-              console.log(error)
-            })
-        }));
       })
       .catch((error) => {
-        console.log(error)
+        this.setState({ data: error.data })
       })
   }
 
@@ -48,7 +35,7 @@ class App extends Component {
       </div>
     });
     return (
-      <div class="grid-container">
+      <div className="grid-container">
         <ul>
           {info}
         </ul>
